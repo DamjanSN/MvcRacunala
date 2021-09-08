@@ -1,0 +1,68 @@
+﻿@model IEnumerable<MvcRacunala.Models.Racunala>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Baza Posuđenih računala</h1>
+
+<p>
+    <a asp-action="Create">Novi unos (Korisniče tu PRITISNI)</a>
+</p>
+
+<form asp-controller="Racunalas" asp-action="Index" method="get">
+   
+    <p><b>Pretraživanje</b></p>
+    Naziv: <input type="text" name="SearchString" />
+    <input type="submit" value="Filtriraj" />
+   
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Naziv)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DatumIzdavanja)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Vrsta)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cijena)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Stanje)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Naziv)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DatumIzdavanja)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Vrsta)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cijena)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Stanje)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Uredi</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Detalji</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Briši</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
